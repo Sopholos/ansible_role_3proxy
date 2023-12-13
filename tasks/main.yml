@@ -1,0 +1,14 @@
+- name: setup log formats
+  template:
+    src: 3proxy.cfg.j2
+    dest: "{{ threeproxy_volume_config.docker_path }}/3proxy.cfg"
+
+- name: deploy 3proxy
+  docker_container:
+    name: "{{ 3proxy_container_name }}"
+    image: 3proxy/3proxy:latest
+    restart_policy: unless-stopped
+    ports:
+      - "{{ threeproxy_external_port }}:{{ threeproxy_internal_port }}"
+    volumes:
+      - "{{ threeproxy_volume_config.host_path }}:{{ threeproxy_volume_config.docker_path }}"
