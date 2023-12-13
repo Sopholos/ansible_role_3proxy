@@ -5,8 +5,8 @@
 
 - name: deploy 3proxy
   docker_container:
-    name: "{{ 3proxy_container_name }}"
-    image: 3proxy/3proxy:latest
+    name: "{{ threeproxy_container_name }}"
+    image: "{{ threeproxy_image_name }}"
     restart_policy: unless-stopped
     ports:
       - "{{ threeproxy_external_port }}:{{ threeproxy_internal_port }}"
