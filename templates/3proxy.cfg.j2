@@ -1,5 +1,5 @@
 {% for user in threeproxy_users %}
-users user.name:CL:user.password
+users {{ user.name }}:CL:{{ user.password }}
 {% endfor %}
 
 nscache 65536
@@ -12,6 +12,6 @@ logformat "{{ threeproxy_log_format }}"
 auth strong
 flush
 {% for user in threeproxy_users %}
-allow user.name
+allow {{ user.name }}
 {% endfor %}
 proxy -p{{ threeproxy_internal_port }}
