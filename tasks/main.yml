@@ -13,7 +13,6 @@
     name: "{{ threeproxy_container_name }}"
     image: "{{ threeproxy_image_name }}"
     restart_policy: unless-stopped
-    ports:
-      - "{{ threeproxy_external_port }}:{{ threeproxy_internal_port }}"
+    ports: "{{ threeproxy_ports }}"
     volumes:
       - "{{ threeproxy_volume_config.host_path }}:{{ threeproxy_volume_config.docker_path }}"

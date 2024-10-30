@@ -11,7 +11,9 @@ log "{{ threeproxy_log_file }}"
 logformat "{{ threeproxy_log_format }}"
 auth strong
 flush
-{% for user in threeproxy_users %}
-allow {{ user.name }}
+
+{% for section in threeproxy_sections %}
+{{ section }}
+flush
+
 {% endfor %}
-proxy -p{{ threeproxy_internal_port }}
